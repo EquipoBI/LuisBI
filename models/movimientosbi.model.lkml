@@ -21,4 +21,9 @@ explore: accessos_clientes {
     sql_on: ${accessos_clientes.cuenta}=${pre_pay_studio_movements_v.num_cuenta} ;;
     relationship: one_to_many
   }
+  join: maquila {
+    type: full_outer
+    sql_on: ${accessos_clientes.cuenta}=${maquila.num_cuenta} ;;
+    relationship: one_to_one
+  }
 }
