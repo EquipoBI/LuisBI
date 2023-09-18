@@ -22,7 +22,8 @@ view: pruebas_sociales {
   }
 
   dimension: mes_txt {
-    type: string
+    type: date
+    datatype: date
     sql: ${TABLE}.Mes_txt ;;
   }
 
@@ -99,22 +100,22 @@ view: pruebas_sociales {
   set: detail {
     fields: [
         comercio,
-	fecha,
-	mes_txt,
-	nombre_de_medidas,
-	razon_social,
-	rfc,
-	email_contacto,
-	usuario,
-	ventas,
-	devoluciones,
-	iva,
-	importe_ventas,
-	importe_descuento,
-	transacciones,
-	estado_fiscal,
-	estado_comercial,
-	municipio_comercial
+  fecha,
+  mes_txt,
+  nombre_de_medidas,
+  razon_social,
+  rfc,
+  email_contacto,
+  usuario,
+  ventas,
+  devoluciones,
+  iva,
+  importe_ventas,
+  importe_descuento,
+  transacciones,
+  estado_fiscal,
+  estado_comercial,
+  municipio_comercial
     ]
   }
 }
