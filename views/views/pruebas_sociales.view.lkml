@@ -22,8 +22,7 @@ view: pruebas_sociales {
   }
 
   dimension: mes_txt {
-    type: date
-    datatype: date
+    type: string
     sql: ${TABLE}.Mes_txt ;;
   }
 
