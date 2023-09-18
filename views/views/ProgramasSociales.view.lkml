@@ -1,9 +1,7 @@
 view: programassociales {
-  sql_table_name: `mgcp-10078073-bxl-bi-snd.BIPlata.VW_ProgramasSociales`
-  # # You can specify the table name if it's different from the view name:
-  # sql_table_name: my_schema_name.tester ;;
-  #
-  # # Define your dimensions and measures here, like this:
+  sql_table_name: `mgcp-10078073-bxl-bi-snd.BIPlata.ProgramasSociales`;;
+
+
 
   dimension: Comercio{
     type: string
@@ -14,6 +12,11 @@ view: programassociales {
 dimension: Fecha{
   type: date
   sql: ${TABLE}.Fecha ;;
+}
+
+dimension: Mes_txt {
+  type: string
+  sql: ${TABLE}.Mes_txt ;;
 }
 
   dimension: user_id {
