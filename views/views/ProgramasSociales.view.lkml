@@ -3,7 +3,15 @@ view: programassociales {
   # sql_table_name: my_schema_name.tester ;;
   #
   # # Define your dimensions and measures here, like this:
-   dimension: user_id {
+
+  dimension: Comercio{
+    type: string
+    sql: ${TABLE}.Comercio ;;
+
+  }
+
+
+  dimension: user_id {
      description: "Unique ID for each user that has ordered"
      type: number
      sql: ${TABLE}.user_id ;;
