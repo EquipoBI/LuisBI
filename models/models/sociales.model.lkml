@@ -11,3 +11,5 @@ datagroup: sociales_default_datagroup {
 persist_with: sociales_default_datagroup
 
 explore: programassociales {}
+
+explore: sociales_v2 {}
