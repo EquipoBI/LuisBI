@@ -23,7 +23,7 @@ view: pruebas_sociales {
 
   dimension: mes_txt {
     type: date
-    value_format: "YYYY-MM-DD"
+    value_format: "YYYY-DD-MM"
     sql: ${TABLE}.Mes_txt ;;
   }
 
