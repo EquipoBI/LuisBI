@@ -65,7 +65,7 @@ view: sociales_v2 {
   }
 
   dimension: ventas {
-    type: string
+    type: number
     sql: ${TABLE}.ventas ;;
   }
 
@@ -112,21 +112,21 @@ view: sociales_v2 {
   set: detail {
     fields: [
         comercio,
-	fecha,
-	mes_xt,
-	nombre_de_medidas,
-	razon_social,
-	rfc,
-	email_contacto,
-	ventas,
-	devoluciones,
-	iva,
-	importe_ventas,
-	importe_descuento,
-	transacciones,
-	estado_fiscal,
-	estado_comercial,
-	municipio_comercial
+  fecha,
+  mes_xt,
+  nombre_de_medidas,
+  razon_social,
+  rfc,
+  email_contacto,
+  ventas,
+  devoluciones,
+  iva,
+  importe_ventas,
+  importe_descuento,
+  transacciones,
+  estado_fiscal,
+  estado_comercial,
+  municipio_comercial
     ]
   }
 }
