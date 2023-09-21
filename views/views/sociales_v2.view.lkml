@@ -1,7 +1,7 @@
 
 view: sociales_v2 {
   derived_table: {
-    sql: Select 
+    sql: Select
         Comercio,
         Fecha,
         Date_Trunc (Fecha,Month) As Mes_xt,
@@ -19,7 +19,7 @@ view: sociales_v2 {
         Estado_Comercial,
         Municipio_Comercial
       From
-        `mgcp-10078073-bxl-bi-snd.BIOro.ProgramasSociales` ;;
+        `mgcp-10078073-bxl-bi-snd.BIPlata.ProgramasSociales` ;;
   }
 
   measure: count {
@@ -112,21 +112,21 @@ view: sociales_v2 {
   set: detail {
     fields: [
         comercio,
-	fecha,
-	mes_xt,
-	nombre_de_medidas,
-	razon_social,
-	rfc,
-	email_contacto,
-	ventas,
-	devoluciones,
-	iva,
-	importe_ventas,
-	importe_descuento,
-	transacciones,
-	estado_fiscal,
-	estado_comercial,
-	municipio_comercial
+  fecha,
+  mes_xt,
+  nombre_de_medidas,
+  razon_social,
+  rfc,
+  email_contacto,
+  ventas,
+  devoluciones,
+  iva,
+  importe_ventas,
+  importe_descuento,
+  transacciones,
+  estado_fiscal,
+  estado_comercial,
+  municipio_comercial
     ]
   }
 }
