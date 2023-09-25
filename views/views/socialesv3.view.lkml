@@ -5,7 +5,7 @@ view: socialesv3 {
         Comercio,
         CAST([ Fecha] As Date),
         CAST([ Mes_txt] As Date),
-        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1) As 'Nombre_de_medidas',
+        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1),
         SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As 'razon_social',
         SUBSTRING([ rfc],2,LEN([ rfc])-1) As 'rfc',
         SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1) As 'email_contacto',
