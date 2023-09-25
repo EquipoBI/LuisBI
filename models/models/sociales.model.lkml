@@ -12,4 +12,4 @@ persist_with: sociales_default_datagroup
 
 explore: programassociales {}
 
-explore: programas_sociales {}
+explore: sociales_v2 {}
