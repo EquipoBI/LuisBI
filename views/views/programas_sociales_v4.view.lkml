@@ -55,7 +55,7 @@ view: programas_sociales_v4 {
          End,
          MunicipioComercial
       From
-         [dbo].[Consolidadov6]
+         dbo.Consolidadov6
 
       Union All
 
