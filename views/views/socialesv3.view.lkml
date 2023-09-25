@@ -4,7 +4,7 @@ view: socialesv3 {
     sql: Select
         Comercio,
         CAST([ Fecha] As Date),
-        CAST([ Mes_txt] As Date) As 'Mes_txt',
+        CAST([ Mes_txt] As Date),
         SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1) As 'Nombre de medidas',
         SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As 'razon_social',
         SUBSTRING([ rfc],2,LEN([ rfc])-1) As 'rfc',
