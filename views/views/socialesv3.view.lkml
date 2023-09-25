@@ -1,24 +1,24 @@
 
-view: sociales_v2 {
+view: socialesv3 {
   derived_table: {
     sql: Select
         Comercio,
-        CAST([ Fecha] As Date),
-        CAST([ Mes_txt] As Date),
-        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1),
-        SUBSTRING([ razon_social],2,LEN([ razon_social]) -1),
-        SUBSTRING([ rfc],2,LEN([ rfc])-1),
-        SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1),
-        SUBSTRING([ Usuario],2,LEN([ Usuario]) -1),
-        CAST([ ventas] As Decimal(32,2)),
-        CAST([ devoluciones] As Decimal (32,2)),
-        CAST([ iva] As Float),
-        CAST([ importe_ventas] As Decimal(32,2)),
-        CAST([ importe_descuento] As Decimal(32,2)),
-        CAST([ transacciones] As Decimal (32,2)),
-        [ Estado Fiscal],
-        Case
-          WHEN [ Estado Comercial] Like '%cdmx%' Or [ Estado Comercial] Like '%ciudad de m%' Or [ Estado Fiscal] Like  '%feder%' Then 'DISTRITO FEDERAL'
+        CAST([ Fecha] As Date) As 'Fecha',
+        CAST([ Mes_txt] As Date) As 'Mes_txt',
+        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1) As 'Nombre de medidas',
+        SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As 'razon_social',
+        SUBSTRING([ rfc],2,LEN([ rfc])-1) As 'rfc',
+        SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1) As 'email_contacto',
+        SUBSTRING([ Usuario],2,LEN([ Usuario]) -1) As 'Usuario',
+        CAST([ ventas] As Decimal(32,2)) As 'ventas',
+        CAST([ devoluciones] As Decimal (32,2)) As 'devoluciones',
+        CAST([ iva] As Float) As 'iva',
+        CAST([ importe_ventas] As Decimal(32,2))As 'importe_ventas',
+        CAST([ importe_descuento] As Decimal(32,2))As 'importe_descuento',
+        CAST([ transacciones] As Decimal (32,2) )As 'transacciones',
+        [ Estado Fiscal] As 'Estado Fiscal',
+        Case  
+           WHEN [ Estado Comercial] Like '%cdmx%' Or [ Estado Comercial] Like '%ciudad de m%' Or [ Estado Fiscal] Like  '%feder%' Then 'DISTRITO FEDERAL' 
           WHEN [ Estado Comercial] Like '%xico%' Or [ Estado Fiscal] Like '%xico%' Then 'ESTADO DE MÉXICO'
           WHEN [ Estado Comercial] Like '%uebl%' Or [ Estado Fiscal] Like '%uebl%' Then 'PUEBLA'
           WHEN [ Estado Comercial] Like '%guerr%' Or [ Estado Fiscal] Like '%guerr%' Then 'GUERRERO'
@@ -52,36 +52,36 @@ view: sociales_v2 {
           WHEN [ Estado Comercial] Like '%tlax%' Or [ Estado Fiscal] Like '%tlax%' Then 'TLAXCALA'
           WHEN [ Estado Comercial] Like '%taba%' Or [ Estado Fiscal] Like '%taba%' Then 'TABASCO'
           Else 'ESTADO DE MÉXICO'
-         End,
-         [ Municipio Comercial]
+         End As 'Estado_Comercial',
+         [ Municipio Comercial] As 'Municipio Comercial'
       From
          [dbo].[Consolidadov6]
-
+      
       Union All
-
+      
       Select
-        A.comercio,
-         A.cecha,
-         DATETRUNC(MONTH,A.Fecha) AS mes_txt,
+        A.Comercio,
+         A.Fecha,
+         DATETRUNC(MONTH,A.Fecha) AS 'Mes_txt',
          Case
            When A.idPrograma = '5' Then 'Mejoravit'
            When A.idPrograma = '10' Then 'Hipoteca Verde'
            When A.idPrograma = '219' Then 'Renueva'
            When A.idPrograma = '220' Then 'Repara'
-         End As nombre_de_medidas,
+         End As 'Nombre de medidas',
          B.razon_social,
          B.rfc,
          B.email_contacto,
-         'Si' As usuario,
+         'Si' As 'Usuario',
          A.ventas,
          A.devoluciones,
          A.iva,
          A.importe_ventas, --Este campo se toma en cuenta para renueva y repara
          A.importe_descuento,
          A.transacciones,
-         B.estado As estado_fiscal',
-         Case
-           WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL'
+         B.estado As 'Estado Fiscal',
+         Case  
+           WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL' 
            WHEN B.estadoComercial Like '%xico%' Or B.estado Like '%xico%' Then 'ESTADO DE MÉXICO'
            WHEN B.estadoComercial Like '%uebl%' Or B.estado Like '%uebl%' Then 'PUEBLA'
            WHEN B.estadoComercial Like '%guerr%' Or B.estado Like '%guerr%' Then 'GUERRERO'
@@ -116,14 +116,14 @@ view: sociales_v2 {
            WHEN B.estadoComercial Like '%taba%' Or B.estado Like '%taba%' Then 'TABASCO'
            Else 'ESTADO DE MÉXICO'
          End As 'Estado Comercial',
-         B.delegacionComercial As municipio_comercial'
-       From
+         B.delegacionComercial As 'Municipio Comercial'
+       From 
          broxelco_rdg.bp_detalle_diario_comercio A
        Left Join
          broxelco_rdg.Comercio B  On A.comercio = B.Comercio
        Left Join
          broxelco_rdg.ComercioNoReportar C On A.comercio = C.Comercio
-       Where
+       Where 
          A.fecha >= '2023-09-01' And A.idPrograma In ('5','10','219','220') And C.Comercio Is Null ;;
   }
 
@@ -149,7 +149,8 @@ view: sociales_v2 {
 
   dimension: nombre_de_medidas {
     type: string
-    sql: ${TABLE} ;;
+    label: "Nombre de medidas"
+    sql: ${TABLE}."Nombre de medidas" ;;
   }
 
   dimension: razon_social {
@@ -204,7 +205,8 @@ view: sociales_v2 {
 
   dimension: estado_fiscal {
     type: string
-    sql: ${TABLE} ;;
+    label: "Estado Fiscal"
+    sql: ${TABLE}."Estado Fiscal" ;;
   }
 
   dimension: estado_comercial {
@@ -214,28 +216,29 @@ view: sociales_v2 {
 
   dimension: municipio_comercial {
     type: string
-    sql: ${TABLE} ;;
+    label: "Municipio Comercial"
+    sql: ${TABLE}."Municipio Comercial" ;;
   }
 
   set: detail {
     fields: [
         comercio,
-  fecha,
-  mes_txt,
-  nombre_de_medidas,
-  razon_social,
-  rfc,
-  email_contacto,
-  usuario,
-  ventas,
-  devoluciones,
-  iva,
-  importe_ventas,
-  importe_descuento,
-  transacciones,
-  estado_fiscal,
-  estado_comercial,
-  municipio_comercial
+	fecha,
+	mes_txt,
+	nombre_de_medidas,
+	razon_social,
+	rfc,
+	email_contacto,
+	usuario,
+	ventas,
+	devoluciones,
+	iva,
+	importe_ventas,
+	importe_descuento,
+	transacciones,
+	estado_fiscal,
+	estado_comercial,
+	municipio_comercial
     ]
   }
 }
