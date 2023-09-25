@@ -68,7 +68,7 @@ view: programas_sociales_v4 {
          When A.idPrograma = '10' Then 'Hipoteca Verde'
          When A.idPrograma = '219' Then 'Renueva'
          When A.idPrograma = '220' Then 'Repara'
-        End As 'NombreMedidas',
+        End,
         B.razon_social,
         B.rfc,
         B.email_contacto,
