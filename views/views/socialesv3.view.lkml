@@ -3,7 +3,7 @@ view: socialesv3 {
   derived_table: {
     sql: Select
         Comercio,
-        [ Fecha] As 'Fecha',
+        CAST([ Fecha] As Date),
         CAST([ Mes_txt] As Date) As 'Mes_txt',
         SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1) As 'Nombre de medidas',
         SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As 'razon_social',
@@ -138,7 +138,7 @@ view: socialesv3 {
   }
 
   dimension: fecha {
-    type: string
+    type: date
     sql: ${TABLE}.Fecha ;;
   }
 
