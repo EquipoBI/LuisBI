@@ -1,4 +1,4 @@
-connection: "biplata"
+connection: "azurebi"
 
 # include all the views
 include: "/views/**/*.view.lkml"
