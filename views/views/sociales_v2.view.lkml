@@ -3,20 +3,20 @@ view: sociales_v2 {
   derived_table: {
     sql: Select
         Comercio,
-        CAST([ Fecha] As Date) As fecha,
-        CAST([ Mes_txt] As Date) As mes_txt,
-        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1) As nombre_de_medidas,
-        SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As Razon_social,
-        SUBSTRING([ rfc],2,LEN([ rfc])-1) As rfc,
-        SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1) As email_contacto,
-        SUBSTRING([ Usuario],2,LEN([ Usuario]) -1) As usuario,
-        CAST([ ventas] As Decimal(32,2)) As ventas,
-        CAST([ devoluciones] As Decimal (32,2)) As devoluciones,
-        CAST([ iva] As Float) As iva,
-        CAST([ importe_ventas] As Decimal(32,2))As importe_ventas,
-        CAST([ importe_descuento] As Decimal(32,2))As importe_descuento,
-        CAST([ transacciones] As Decimal (32,2) )As transacciones,
-        [ Estado Fiscal] As estado_fiscal,
+        CAST([ Fecha] As Date),
+        CAST([ Mes_txt] As Date),
+        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1),
+        SUBSTRING([ razon_social],2,LEN([ razon_social]) -1),
+        SUBSTRING([ rfc],2,LEN([ rfc])-1),
+        SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1),
+        SUBSTRING([ Usuario],2,LEN([ Usuario]) -1),
+        CAST([ ventas] As Decimal(32,2)),
+        CAST([ devoluciones] As Decimal (32,2)),
+        CAST([ iva] As Float),
+        CAST([ importe_ventas] As Decimal(32,2)),
+        CAST([ importe_descuento] As Decimal(32,2)),
+        CAST([ transacciones] As Decimal (32,2)),
+        [ Estado Fiscal],
         Case
           WHEN [ Estado Comercial] Like '%cdmx%' Or [ Estado Comercial] Like '%ciudad de m%' Or [ Estado Fiscal] Like  '%feder%' Then 'DISTRITO FEDERAL'
           WHEN [ Estado Comercial] Like '%xico%' Or [ Estado Fiscal] Like '%xico%' Then 'ESTADO DE MÉXICO'
@@ -52,8 +52,8 @@ view: sociales_v2 {
           WHEN [ Estado Comercial] Like '%tlax%' Or [ Estado Fiscal] Like '%tlax%' Then 'TLAXCALA'
           WHEN [ Estado Comercial] Like '%taba%' Or [ Estado Fiscal] Like '%taba%' Then 'TABASCO'
           Else 'ESTADO DE MÉXICO'
-         End As estado_comercial,
-         [ Municipio Comercial] As municipio_comercial'
+         End,
+         [ Municipio Comercial]
       From
          [dbo].[Consolidadov6]
 
@@ -149,8 +149,7 @@ view: sociales_v2 {
 
   dimension: nombre_de_medidas {
     type: string
-    label: "Nombre de medidas"
-    sql: ${TABLE}."Nombre de medidas" ;;
+    sql: ${TABLE} ;;
   }
 
   dimension: razon_social {
@@ -205,8 +204,7 @@ view: sociales_v2 {
 
   dimension: estado_fiscal {
     type: string
-    label: "Estado Fiscal"
-    sql: ${TABLE}."Estado Fiscal" ;;
+    sql: ${TABLE} ;;
   }
 
   dimension: estado_comercial {
@@ -216,8 +214,7 @@ view: sociales_v2 {
 
   dimension: municipio_comercial {
     type: string
-    label: "Municipio Comercial"
-    sql: ${TABLE}."Municipio Comercial" ;;
+    sql: ${TABLE} ;;
   }
 
   set: detail {
