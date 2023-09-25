@@ -13,9 +13,9 @@ view: programas_sociales_v4 {
         ventas,
         CAST(devoluciones As Decimal (32,2)),
         CAST(iva As Float),
-        CAST(importe_ventas As Decimal(32,2))As 'importe_ventas',
-        CAST(importe_descuento As Decimal(32,2))As 'importe_descuento',
-        CAST(transacciones As Decimal (32,2)) As 'transacciones',
+        CAST(importe_ventas As Decimal(32,2)),
+        CAST(importe_descuento As Decimal(32,2)),
+        CAST(transacciones As Decimal (32,2)),
         EstadoFiscal,
         Case
           WHEN EstadoComercial Like '%cdmx%' Or EstadoComercial Like '%ciudad de m%' Or EstadoFiscal Like  '%feder%' Then 'DISTRITO FEDERAL'
@@ -52,8 +52,8 @@ view: programas_sociales_v4 {
           WHEN EstadoComercial Like '%tlax%' Or EstadoFiscal Like '%tlax%' Then 'TLAXCALA'
           WHEN EstadoComercial Like '%taba%' Or EstadoFiscal Like '%taba%' Then 'TABASCO'
           Else 'ESTADO DE MÉXICO'
-         End As 'Estado_Comercial',
-         MunicipioComercial As 'Municipio Comercial'
+         End,
+         MunicipioComercial
       From
          [dbo].[Consolidadov6]
 
