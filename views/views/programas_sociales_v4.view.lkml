@@ -62,7 +62,7 @@ view: programas_sociales_v4 {
       Select
         A.Comercio,
          A.Fecha,
-         DATETRUNC(MONTH,A.Fecha) AS 'Mes_txt',
+         A.Fecha,
          Case
            When A.idPrograma = '5' Then 'Mejoravit'
            When A.idPrograma = '10' Then 'Hipoteca Verde'
