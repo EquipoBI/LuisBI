@@ -62,7 +62,7 @@ view: programas_sociales_v4 {
       Select
         A.Comercio,
         A.Fecha,
-        A.Fecha,
+        DATE_TRUNC(A.Fecha,MONTH),
         Case
          When A.idPrograma = '5' Then 'Mejoravit'
          When A.idPrograma = '10' Then 'Hipoteca Verde'
