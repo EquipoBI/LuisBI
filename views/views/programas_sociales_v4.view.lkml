@@ -10,15 +10,15 @@ view: programas_sociales_v4 {
         rfc,
         email_contacto,
         Usuario,
-        CAST(ventas As Decimal(32,2)) As 'ventas',
-        CAST(devoluciones As Decimal (32,2)) As 'devoluciones',
+        CAST(ventas As Decimal(32,2)),
+        CAST(devoluciones As Decimal (32,2)),
         CAST(iva As Float) As 'iva',
         CAST(importe_ventas As Decimal(32,2))As 'importe_ventas',
         CAST(importe_descuento As Decimal(32,2))As 'importe_descuento',
         CAST(transacciones As Decimal (32,2)) As 'transacciones',
         EstadoFiscal,
-        Case  
-           WHEN EstadoComercial Like '%cdmx%' Or EstadoComercial Like '%ciudad de m%' Or EstadoFiscal Like  '%feder%' Then 'DISTRITO FEDERAL' 
+        Case
+          WHEN EstadoComercial Like '%cdmx%' Or EstadoComercial Like '%ciudad de m%' Or EstadoFiscal Like  '%feder%' Then 'DISTRITO FEDERAL'
           WHEN EstadoComercial Like '%xico%' Or EstadoFiscal Like '%xico%' Then 'ESTADO DE MÉXICO'
           WHEN EstadoComercial Like '%uebl%' Or EstadoFiscal Like '%uebl%' Then 'PUEBLA'
           WHEN EstadoComercial Like '%guerr%' Or EstadoFiscal Like '%guerr%' Then 'GUERRERO'
@@ -56,9 +56,9 @@ view: programas_sociales_v4 {
          MunicipioComercial As 'Municipio Comercial'
       From
          [dbo].[Consolidadov6]
-      
+
       Union All
-      
+
       Select
         A.Comercio,
          A.Fecha,
@@ -80,8 +80,8 @@ view: programas_sociales_v4 {
          A.importe_descuento,
          A.transacciones,
          B.estado As 'Estado Fiscal',
-         Case  
-           WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL' 
+         Case
+           WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL'
            WHEN B.estadoComercial Like '%xico%' Or B.estado Like '%xico%' Then 'ESTADO DE MÉXICO'
            WHEN B.estadoComercial Like '%uebl%' Or B.estado Like '%uebl%' Then 'PUEBLA'
            WHEN B.estadoComercial Like '%guerr%' Or B.estado Like '%guerr%' Then 'GUERRERO'
@@ -117,13 +117,13 @@ view: programas_sociales_v4 {
            Else 'ESTADO DE MÉXICO'
          End As 'Estado Comercial',
          B.delegacionComercial As 'Municipio Comercial'
-       From 
+       From
          broxelco_rdg.bp_detalle_diario_comercio A
        Left Join
          broxelco_rdg.Comercio B  On A.comercio = B.Comercio
        Left Join
          broxelco_rdg.ComercioNoReportar C On A.comercio = C.Comercio
-       Where 
+       Where
          A.fecha >= '2023-09-01' And A.idPrograma In ('5','10','219','220') And C.Comercio Is Null ;;
   }
 
@@ -221,22 +221,22 @@ view: programas_sociales_v4 {
   set: detail {
     fields: [
         comercio,
-	fecha,
-	mes_txt,
-	nombre_medidas,
-	razon_social,
-	rfc,
-	email_contacto,
-	usuario,
-	ventas,
-	devoluciones,
-	iva,
-	importe_ventas,
-	importe_descuento,
-	transacciones,
-	estado_fiscal,
-	estado_comercial,
-	municipio_comercial
+  fecha,
+  mes_txt,
+  nombre_medidas,
+  razon_social,
+  rfc,
+  email_contacto,
+  usuario,
+  ventas,
+  devoluciones,
+  iva,
+  importe_ventas,
+  importe_descuento,
+  transacciones,
+  estado_fiscal,
+  estado_comercial,
+  municipio_comercial
     ]
   }
 }
