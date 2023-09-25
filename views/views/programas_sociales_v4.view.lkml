@@ -72,14 +72,14 @@ view: programas_sociales_v4 {
         B.razon_social,
         B.rfc,
         B.email_contacto,
-        'Si' As 'Usuario',
+        'Si',
          A.ventas,
          A.devoluciones,
          A.iva,
          A.importe_ventas, --Este campo se toma en cuenta para renueva y repara
          A.importe_descuento,
          A.transacciones,
-         B.estado As 'Estado Fiscal',
+         B.estado,
          Case
            WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL'
            WHEN B.estadoComercial Like '%xico%' Or B.estado Like '%xico%' Then 'ESTADO DE MÉXICO'
@@ -115,8 +115,8 @@ view: programas_sociales_v4 {
            WHEN B.estadoComercial Like '%tlax%' Or B.estado Like '%tlax%' Then 'TLAXCALA'
            WHEN B.estadoComercial Like '%taba%' Or B.estado Like '%taba%' Then 'TABASCO'
            Else 'ESTADO DE MÉXICO'
-         End As 'Estado Comercial',
-         B.delegacionComercial As 'Municipio Comercial'
+         End,
+         B.delegacionComercial
        From
          broxelco_rdg.bp_detalle_diario_comercio A
        Left Join
