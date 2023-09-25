@@ -13,7 +13,7 @@ view: programas_sociales_v4 {
         ventas,
         CAST(devoluciones As Decimal (32,2)),
         CAST(iva As Float),
-        CAST(importe_ventas As Decimal(32,2)),
+        importe_ventas,
         CAST(importe_descuento As Decimal(32,2)),
         CAST(transacciones As Decimal (32,2)),
         EstadoFiscal,
