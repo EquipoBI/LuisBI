@@ -10,7 +10,7 @@ view: programas_sociales_v4 {
         rfc,
         email_contacto,
         Usuario,
-        CAST(ventas As Decimal(32,2)),
+        ventas,
         CAST(devoluciones As Decimal (32,2)),
         CAST(iva As Float) As 'iva',
         CAST(importe_ventas As Decimal(32,2))As 'importe_ventas',
