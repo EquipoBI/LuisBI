@@ -3,20 +3,20 @@ view: sociales_v2 {
   derived_table: {
     sql: Select
         Comercio,
-        CAST([ Fecha] As Date) As 'Fecha',
-        CAST([ Mes_txt] As Date) As 'Mes_txt',
-        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1) As 'Nombre de medidas',
-        SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As 'razon_social',
-        SUBSTRING([ rfc],2,LEN([ rfc])-1) As 'rfc',
-        SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1) As 'email_contacto',
-        SUBSTRING([ Usuario],2,LEN([ Usuario]) -1) As 'Usuario',
-        CAST([ ventas] As Decimal(32,2)) As 'ventas',
-        CAST([ devoluciones] As Decimal (32,2)) As 'devoluciones',
-        CAST([ iva] As Float) As 'iva',
-        CAST([ importe_ventas] As Decimal(32,2))As 'importe_ventas',
-        CAST([ importe_descuento] As Decimal(32,2))As 'importe_descuento',
-        CAST([ transacciones] As Decimal (32,2) )As 'transacciones',
-        [ Estado Fiscal] As 'Estado Fiscal',
+        CAST([ Fecha] As Date) As fecha,
+        CAST([ Mes_txt] As Date) As mes_txt,
+        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1) As nombre_de_medidas,
+        SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As Razon_social,
+        SUBSTRING([ rfc],2,LEN([ rfc])-1) As rfc,
+        SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1) As email_contacto,
+        SUBSTRING([ Usuario],2,LEN([ Usuario]) -1) As usuario,
+        CAST([ ventas] As Decimal(32,2)) As ventas,
+        CAST([ devoluciones] As Decimal (32,2)) As devoluciones,
+        CAST([ iva] As Float) As iva,
+        CAST([ importe_ventas] As Decimal(32,2))As importe_ventas,
+        CAST([ importe_descuento] As Decimal(32,2))As importe_descuento,
+        CAST([ transacciones] As Decimal (32,2) )As transacciones,
+        [ Estado Fiscal] As estado_fiscal,
         Case
           WHEN [ Estado Comercial] Like '%cdmx%' Or [ Estado Comercial] Like '%ciudad de m%' Or [ Estado Fiscal] Like  '%feder%' Then 'DISTRITO FEDERAL'
           WHEN [ Estado Comercial] Like '%xico%' Or [ Estado Fiscal] Like '%xico%' Then 'ESTADO DE MÉXICO'
@@ -52,34 +52,34 @@ view: sociales_v2 {
           WHEN [ Estado Comercial] Like '%tlax%' Or [ Estado Fiscal] Like '%tlax%' Then 'TLAXCALA'
           WHEN [ Estado Comercial] Like '%taba%' Or [ Estado Fiscal] Like '%taba%' Then 'TABASCO'
           Else 'ESTADO DE MÉXICO'
-         End As 'Estado_Comercial',
-         [ Municipio Comercial] As 'Municipio Comercial'
+         End As estado_comercial,
+         [ Municipio Comercial] As municipio_comercial'
       From
          [dbo].[Consolidadov6]
 
       Union All
 
       Select
-        A.Comercio,
-         A.Fecha,
-         DATETRUNC(MONTH,A.Fecha) AS 'Mes_txt',
+        A.comercio,
+         A.cecha,
+         DATETRUNC(MONTH,A.Fecha) AS mes_txt,
          Case
            When A.idPrograma = '5' Then 'Mejoravit'
            When A.idPrograma = '10' Then 'Hipoteca Verde'
            When A.idPrograma = '219' Then 'Renueva'
            When A.idPrograma = '220' Then 'Repara'
-         End As 'Nombre de medidas',
+         End As nombre_de_medidas,
          B.razon_social,
          B.rfc,
          B.email_contacto,
-         'Si' As 'Usuario',
+         'Si' As usuario,
          A.ventas,
          A.devoluciones,
          A.iva,
          A.importe_ventas, --Este campo se toma en cuenta para renueva y repara
          A.importe_descuento,
          A.transacciones,
-         B.estado As 'Estado Fiscal',
+         B.estado As estado_fiscal',
          Case
            WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL'
            WHEN B.estadoComercial Like '%xico%' Or B.estado Like '%xico%' Then 'ESTADO DE MÉXICO'
@@ -116,7 +116,7 @@ view: sociales_v2 {
            WHEN B.estadoComercial Like '%taba%' Or B.estado Like '%taba%' Then 'TABASCO'
            Else 'ESTADO DE MÉXICO'
          End As 'Estado Comercial',
-         B.delegacionComercial As 'Municipio Comercial'
+         B.delegacionComercial As municipio_comercial'
        From
          broxelco_rdg.bp_detalle_diario_comercio A
        Left Join
