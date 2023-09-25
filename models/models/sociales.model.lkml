@@ -10,4 +10,4 @@ datagroup: sociales_default_datagroup {
 
 persist_with: sociales_default_datagroup
 
-explore: socialesv3 {}
+explore: programas_sociales_v4 {}

@@ -1,64 +1,64 @@
 
-view: socialesv3 {
+view: programas_sociales_v4 {
   derived_table: {
     sql: Select
         Comercio,
-        CAST([ Fecha] As Date),
-        CAST([ Mes_txt] As Date),
-        SUBSTRING([ Nombre de medidas],2,LEN([ Nombre de medidas]) -1),
-        SUBSTRING([ razon_social],2,LEN([ razon_social]) -1) As 'razon_social',
-        SUBSTRING([ rfc],2,LEN([ rfc])-1) As 'rfc',
-        SUBSTRING([ email_contacto],2,LEN([ email_contacto]) -1) As 'email_contacto',
-        SUBSTRING([ Usuario],2,LEN([ Usuario]) -1) As 'Usuario',
-        CAST([ ventas] As Decimal(32,2)) As 'ventas',
-        CAST([ devoluciones] As Decimal (32,2)) As 'devoluciones',
-        CAST([ iva] As Float) As 'iva',
-        CAST([ importe_ventas] As Decimal(32,2))As 'importe_ventas',
-        CAST([ importe_descuento] As Decimal(32,2))As 'importe_descuento',
-        CAST([ transacciones] As Decimal (32,2) )As 'transacciones',
-        [ Estado Fiscal] As 'Estado Fiscal',
-        Case
-           WHEN [ Estado Comercial] Like '%cdmx%' Or [ Estado Comercial] Like '%ciudad de m%' Or [ Estado Fiscal] Like  '%feder%' Then 'DISTRITO FEDERAL'
-          WHEN [ Estado Comercial] Like '%xico%' Or [ Estado Fiscal] Like '%xico%' Then 'ESTADO DE MÉXICO'
-          WHEN [ Estado Comercial] Like '%uebl%' Or [ Estado Fiscal] Like '%uebl%' Then 'PUEBLA'
-          WHEN [ Estado Comercial] Like '%guerr%' Or [ Estado Fiscal] Like '%guerr%' Then 'GUERRERO'
-          WHEN [ Estado Comercial] Like '%quer%' Or [ Estado Fiscal] Like '%quer%' Then 'QUERÉTARO'
-          WHEN [ Estado Comercial] Like '%nuevo le%' Or [ Estado Fiscal] Like '%nuevo le%' Then 'NUEVO LEÓN'
-          WHEN [ Estado Comercial] = 'Baja California' Or [ Estado Fiscal] = 'Baja California' Or [ Estado Fiscal] Like '%nort%' Then 'BAJA CALIFORNIA'
-          WHEN [ Estado Comercial] Like '%sur%' Or [ Estado Fiscal] Like '%sur%' Then 'BAJA CALIFORNIA SUR'
-          WHEN [ Estado Comercial] Like '%campech%' Or [ Estado Fiscal] Like '%campech%' Then 'CAMPECHE'
-          WHEN [ Estado Comercial] Like '%chiap%' Or [ Estado Fiscal] Like '%chiap%' Then 'CHIAPAS'
-          WHEN [ Estado Comercial] Like '%aulipa%' Or [ Estado Fiscal] Like '%aulipa%' Then 'TAMAULIPAS'
-          WHEN [ Estado Comercial] Like '%jalis%' Or [ Estado Fiscal] Like '%jalis%' Then 'JALISCO'
-          WHEN [ Estado Comercial] Like '%sonor%' Or [ Estado Fiscal] Like '%sonor%' Then 'SONORA'
-          WHEN [ Estado Comercial] Like '%naya%' Or [ Estado Fiscal] Like '%naya%' Then 'NAYARIT'
-          WHEN [ Estado Comercial] Like '%micho%' Or [ Estado Fiscal] Like '%micho%' Then 'MICHOACAN'
-          WHEN [ Estado Comercial] Like '%potos%' Or [ Estado Fiscal] Like '%potos%' Then 'SAN LUIS POTOSÍ'
-          WHEN [ Estado Comercial] Like '%coah%' Or [ Estado Fiscal] Like '%coah%' Then 'COAHUILA'
-          WHEN [ Estado Comercial] Like '%vera%' Or [ Estado Fiscal] Like '%vera%' Then 'VERACRUZ'
-          WHEN [ Estado Comercial] Like '%yuca%' Or [ Estado Fiscal] Like '%yuca%' Then 'YUCATÁN'
-          WHEN [ Estado Comercial] Like '%more%' Or [ Estado Fiscal] Like '%more%'  Then 'MORELOS'
-          WHEN [ Estado Comercial] Like '%chih%' Or [ Estado Fiscal] Like '%chih%' Then 'CHIHUAHUA'
-          WHEN [ Estado Comercial] Like '%zaca%' Or [ Estado Fiscal] Like '%zaca%' Then 'ZACATECAS'
-          WHEN [ Estado Comercial] Like '%guana%' Or [ Estado Fiscal] Like '%guana%' Then 'GUANAJUATO'
-          WHEN [ Estado Comercial] Like '%roo%' Or [ Estado Fiscal] Like '%roo%' Then 'QUINTANA ROO'
-          WHEN [ Estado Comercial] Like '%coli%' Or [ Estado Fiscal] Like '%coli%' Then 'COLIMA'
-          WHEN [ Estado Comercial] Like '%aguas%' Or [ Estado Fiscal] Like '%aguas%' Then 'AGUASCALIENTES'
-          WHEN [ Estado Comercial] Like '%oax%' Or [ Estado Fiscal] Like '%oax%' Then 'OAXACA'
-          WHEN [ Estado Comercial] Like '%sina%' Or [ Estado Fiscal] Like '%sina%' Then 'SINALOA'
-          WHEN [ Estado Comercial] Like '%chia%' Or [ Estado Fiscal] Like '%chia%' Then 'CHIAPAS'
-          WHEN [ Estado Comercial] Like '%dura%' Or [ Estado Fiscal] Like '%dura%' Then 'DURANGO'
-          WHEN [ Estado Comercial] Like '%hidal%' Or [ Estado Fiscal] Like '%hidal%' Then 'HIDALGO'
-          WHEN [ Estado Comercial] Like '%tlax%' Or [ Estado Fiscal] Like '%tlax%' Then 'TLAXCALA'
-          WHEN [ Estado Comercial] Like '%taba%' Or [ Estado Fiscal] Like '%taba%' Then 'TABASCO'
+        Fecha,
+        Mes_txt,
+        NombreMedidas,
+        razon_social,
+        rfc,
+        email_contacto,
+        Usuario,
+        CAST(ventas As Decimal(32,2)) As 'ventas',
+        CAST(devoluciones As Decimal (32,2)) As 'devoluciones',
+        CAST(iva As Float) As 'iva',
+        CAST(importe_ventas As Decimal(32,2))As 'importe_ventas',
+        CAST(importe_descuento As Decimal(32,2))As 'importe_descuento',
+        CAST(transacciones As Decimal (32,2)) As 'transacciones',
+        EstadoFiscal,
+        Case  
+           WHEN EstadoComercial Like '%cdmx%' Or EstadoComercial Like '%ciudad de m%' Or EstadoFiscal Like  '%feder%' Then 'DISTRITO FEDERAL' 
+          WHEN EstadoComercial Like '%xico%' Or EstadoFiscal Like '%xico%' Then 'ESTADO DE MÉXICO'
+          WHEN EstadoComercial Like '%uebl%' Or EstadoFiscal Like '%uebl%' Then 'PUEBLA'
+          WHEN EstadoComercial Like '%guerr%' Or EstadoFiscal Like '%guerr%' Then 'GUERRERO'
+          WHEN EstadoComercial Like '%quer%' Or EstadoFiscal Like '%quer%' Then 'QUERÉTARO'
+          WHEN EstadoComercial Like '%nuevo le%' Or EstadoFiscal Like '%nuevo le%' Then 'NUEVO LEÓN'
+          WHEN EstadoComercial = 'Baja California' Or EstadoFiscal = 'Baja California' Or EstadoFiscal Like '%nort%' Then 'BAJA CALIFORNIA'
+          WHEN EstadoComercial Like '%sur%' Or EstadoFiscal Like '%sur%' Then 'BAJA CALIFORNIA SUR'
+          WHEN EstadoComercial Like '%campech%' Or EstadoFiscal Like '%campech%' Then 'CAMPECHE'
+          WHEN EstadoComercial Like '%chiap%' Or EstadoFiscal Like '%chiap%' Then 'CHIAPAS'
+          WHEN EstadoComercial Like '%aulipa%' Or EstadoFiscal Like '%aulipa%' Then 'TAMAULIPAS'
+          WHEN EstadoComercial Like '%jalis%' Or EstadoFiscal Like '%jalis%' Then 'JALISCO'
+          WHEN EstadoComercial Like '%sonor%' Or EstadoFiscal Like '%sonor%' Then 'SONORA'
+          WHEN EstadoComercial Like '%naya%' Or EstadoFiscal Like '%naya%' Then 'NAYARIT'
+          WHEN EstadoComercial Like '%micho%' Or EstadoFiscal Like '%micho%' Then 'MICHOACAN'
+          WHEN EstadoComercial Like '%potos%' Or EstadoFiscal Like '%potos%' Then 'SAN LUIS POTOSÍ'
+          WHEN EstadoComercial Like '%coah%' Or EstadoFiscal Like '%coah%' Then 'COAHUILA'
+          WHEN EstadoComercial Like '%vera%' Or EstadoFiscal Like '%vera%' Then 'VERACRUZ'
+          WHEN EstadoComercial Like '%yuca%' Or EstadoFiscal Like '%yuca%' Then 'YUCATÁN'
+          WHEN EstadoComercial Like '%more%' Or EstadoFiscal Like '%more%'  Then 'MORELOS'
+          WHEN EstadoComercial Like '%chih%' Or EstadoFiscal Like '%chih%' Then 'CHIHUAHUA'
+          WHEN EstadoComercial Like '%zaca%' Or EstadoFiscal Like '%zaca%' Then 'ZACATECAS'
+          WHEN EstadoComercial Like '%guana%' Or EstadoFiscal Like '%guana%' Then 'GUANAJUATO'
+          WHEN EstadoComercial Like '%roo%' Or EstadoFiscal Like '%roo%' Then 'QUINTANA ROO'
+          WHEN EstadoComercial Like '%coli%' Or EstadoFiscal Like '%coli%' Then 'COLIMA'
+          WHEN EstadoComercial Like '%aguas%' Or EstadoFiscal Like '%aguas%' Then 'AGUASCALIENTES'
+          WHEN EstadoComercial Like '%oax%' Or EstadoFiscal Like '%oax%' Then 'OAXACA'
+          WHEN EstadoComercial Like '%sina%' Or EstadoFiscal Like '%sina%' Then 'SINALOA'
+          WHEN EstadoComercial Like '%chia%' Or EstadoFiscal Like '%chia%' Then 'CHIAPAS'
+          WHEN EstadoComercial Like '%dura%' Or EstadoFiscal Like '%dura%' Then 'DURANGO'
+          WHEN EstadoComercial Like '%hidal%' Or EstadoFiscal Like '%hidal%' Then 'HIDALGO'
+          WHEN EstadoComercial Like '%tlax%' Or EstadoFiscal Like '%tlax%' Then 'TLAXCALA'
+          WHEN EstadoComercial Like '%taba%' Or EstadoFiscal Like '%taba%' Then 'TABASCO'
           Else 'ESTADO DE MÉXICO'
          End As 'Estado_Comercial',
-         [ Municipio Comercial] As 'Municipio Comercial'
+         MunicipioComercial As 'Municipio Comercial'
       From
          [dbo].[Consolidadov6]
-
+      
       Union All
-
+      
       Select
         A.Comercio,
          A.Fecha,
@@ -68,7 +68,7 @@ view: socialesv3 {
            When A.idPrograma = '10' Then 'Hipoteca Verde'
            When A.idPrograma = '219' Then 'Renueva'
            When A.idPrograma = '220' Then 'Repara'
-         End As 'Nombre_de_medidas',
+         End As 'Nombre de medidas',
          B.razon_social,
          B.rfc,
          B.email_contacto,
@@ -80,8 +80,8 @@ view: socialesv3 {
          A.importe_descuento,
          A.transacciones,
          B.estado As 'Estado Fiscal',
-         Case
-           WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL'
+         Case  
+           WHEN B.estadoComercial Like '%cdmx%' Or B.estadoComercial Like '%ciudad de m%' Or B.estado Like  '%feder%' Then 'DISTRITO FEDERAL' 
            WHEN B.estadoComercial Like '%xico%' Or B.estado Like '%xico%' Then 'ESTADO DE MÉXICO'
            WHEN B.estadoComercial Like '%uebl%' Or B.estado Like '%uebl%' Then 'PUEBLA'
            WHEN B.estadoComercial Like '%guerr%' Or B.estado Like '%guerr%' Then 'GUERRERO'
@@ -117,13 +117,13 @@ view: socialesv3 {
            Else 'ESTADO DE MÉXICO'
          End As 'Estado Comercial',
          B.delegacionComercial As 'Municipio Comercial'
-       From
+       From 
          broxelco_rdg.bp_detalle_diario_comercio A
        Left Join
          broxelco_rdg.Comercio B  On A.comercio = B.Comercio
        Left Join
          broxelco_rdg.ComercioNoReportar C On A.comercio = C.Comercio
-       Where
+       Where 
          A.fecha >= '2023-09-01' And A.idPrograma In ('5','10','219','220') And C.Comercio Is Null ;;
   }
 
@@ -147,10 +147,9 @@ view: socialesv3 {
     sql: ${TABLE}.Mes_txt ;;
   }
 
-  dimension: nombre_de_medidas {
+  dimension: nombre_medidas {
     type: string
-    label: "Nombre de medidas"
-    sql: ${TABLE}."Nombre de medidas" ;;
+    sql: ${TABLE}.NombreMedidas ;;
   }
 
   dimension: razon_social {
@@ -205,8 +204,7 @@ view: socialesv3 {
 
   dimension: estado_fiscal {
     type: string
-    label: "Estado Fiscal"
-    sql: ${TABLE}."Estado Fiscal" ;;
+    sql: ${TABLE}.EstadoFiscal ;;
   }
 
   dimension: estado_comercial {
@@ -223,22 +221,22 @@ view: socialesv3 {
   set: detail {
     fields: [
         comercio,
-  fecha,
-  mes_txt,
-  nombre_de_medidas,
-  razon_social,
-  rfc,
-  email_contacto,
-  usuario,
-  ventas,
-  devoluciones,
-  iva,
-  importe_ventas,
-  importe_descuento,
-  transacciones,
-  estado_fiscal,
-  estado_comercial,
-  municipio_comercial
+	fecha,
+	mes_txt,
+	nombre_medidas,
+	razon_social,
+	rfc,
+	email_contacto,
+	usuario,
+	ventas,
+	devoluciones,
+	iva,
+	importe_ventas,
+	importe_descuento,
+	transacciones,
+	estado_fiscal,
+	estado_comercial,
+	municipio_comercial
     ]
   }
 }
