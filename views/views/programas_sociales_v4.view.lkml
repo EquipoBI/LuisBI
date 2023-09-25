@@ -61,18 +61,18 @@ view: programas_sociales_v4 {
 
       Select
         A.Comercio,
-         A.Fecha,
-         A.Fecha,
-         Case
-           When A.idPrograma = '5' Then 'Mejoravit'
-           When A.idPrograma = '10' Then 'Hipoteca Verde'
-           When A.idPrograma = '219' Then 'Renueva'
-           When A.idPrograma = '220' Then 'Repara'
-         End As "Nombre_de_medidas"
-         B.razon_social,
-         B.rfc,
-         B.email_contacto,
-         'Si' As 'Usuario',
+        A.Fecha,
+        A.Fecha,
+        Case
+         When A.idPrograma = '5' Then 'Mejoravit'
+         When A.idPrograma = '10' Then 'Hipoteca Verde'
+         When A.idPrograma = '219' Then 'Renueva'
+         When A.idPrograma = '220' Then 'Repara'
+        End As 'NombreMedidas',
+        B.razon_social,
+        B.rfc,
+        B.email_contacto,
+        'Si' As 'Usuario',
          A.ventas,
          A.devoluciones,
          A.iva,
@@ -147,7 +147,7 @@ view: programas_sociales_v4 {
     sql: ${TABLE}.Mes_txt ;;
   }
 
-  dimension: nombre_medidas {
+  dimension: NombreMedidas{
     type: string
     sql: ${TABLE}.NombreMedidas ;;
   }
@@ -223,7 +223,7 @@ view: programas_sociales_v4 {
         comercio,
   fecha,
   mes_txt,
-  nombre_medidas,
+  NombreMedidas,
   razon_social,
   rfc,
   email_contacto,
